@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 
-private const val BASE_URL = "https://jsonplaceholder.typicode.com"
+private const val BASE_URL = "https://dummyjson.com/"
 
 
 //creating a retrofit builder
@@ -17,11 +17,11 @@ private val  retrofit = Retrofit.Builder()
     .build()
 
 interface ApiService {
-    @POST("/posts")
-    suspend fun postTodo(@Body todo: TodoModel): Response<TodoModel>
+    @POST("todos/add")
+    suspend fun postTodo(@Body todo: TodoModel): TodosResponse
 
-    @GET("/1/todos")
-    suspend fun getTodos(): List<TodoModel>
+    @GET("todos")
+    suspend fun getTodos(): TodosResponse
 }
 object TodoPostApi{
     val retrofitService : ApiService by lazy {
